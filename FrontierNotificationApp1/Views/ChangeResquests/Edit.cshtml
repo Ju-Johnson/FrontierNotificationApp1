@@ -1,0 +1,82 @@
+﻿@model FrontierNotificationApp1.Models.ChangeResquests
+
+@{
+    ViewData["Title"] = "Edit Change Request";
+}
+
+<h2>Edit Change Request</h2>
+
+<h4>ChangeResquests</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="Number" class="control-label">CR#: </label>
+                <input asp-for="Number" class="form-control" />
+                <span asp-validation-for="Number" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Subject" class="control-label"></label>
+                <input asp-for="Subject" class="form-control" required />
+                <span asp-validation-for="Subject" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Summary" class="control-label"></label>
+                <textarea asp-for="Summary" class="form-control" rows="3" required></textarea>
+                <span asp-validation-for="Summary" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Status" class="control-label"></label>
+                <select asp-for="Status">
+                    <option value="Initial Notice" selected>Initial Notice</option>
+                    <option value="Successful">Successful</option>
+                    <option value="Failed">Failed</option>
+                    <option value="Rescheduled">Rescheduled</option>
+                    <option value="Cancelled">Cancelled</option>
+                </select>
+                <span asp-validation-for="Status" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="StartDateTime" class="control-label">Start Date/Time</label>
+                <input asp-for="StartDateTime" class="form-control" required />
+                <span asp-validation-for="StartDateTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EndDateTime" class="control-label">End Date/Time</label>
+                <input asp-for="EndDateTime" class="form-control" required />
+                <span asp-validation-for="EndDateTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Impact" class="control-label"></label>
+                <textarea asp-for="Impact" class="form-control" rows="3" required></textarea>
+                <span asp-validation-for="Impact" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label name="Teams" class="control-label">Teams Engaged</label><br />
+                <p>To select multiple (Ctrl + Click)</p>
+                @Html.ListBox("Teams", (MultiSelectList)ViewBag.TeamList, new { required = "required" })
+                <p><a asp-controller="ITteams" asp-action="Index">Edit this list</a></p>
+            </div>
+            <div class="form-group">
+                <label name="Contacts" class="control-label">Send To</label><br />
+                <p>To select multiple (Ctrl + Click)</p>
+                @Html.ListBox("Contacts", (MultiSelectList)ViewBag.ContactList, new { required = "required" })
+                <p><a asp-controller="ITcontacts" asp-action="Index">Edit this list</a></p>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save & Send" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

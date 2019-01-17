@@ -1,0 +1,84 @@
+﻿@model FrontierNotificationApp1.Models.Incidents
+
+@{
+    ViewData["Title"] = "Incident Details";
+}
+
+<h2>Incident Details</h2>
+
+<div>
+    <h4>Incidents</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Priority)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Priority)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Sdpticket)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Sdpticket)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CurrentDateTime)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CurrentDateTime)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Subject)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Subject)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Summary)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Summary)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.InitialDateTime)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.InitialDateTime)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Impact)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Impact)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.VendorTicket)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.VendorTicket)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TeamsEngaged)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TeamsEngaged)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

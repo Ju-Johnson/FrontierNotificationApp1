@@ -1,0 +1,98 @@
+﻿@model FrontierNotificationApp1.Models.Incidents
+
+@{
+    ViewData["Title"] = "Create Incident";
+}
+
+<h2>Create Incident</h2>
+
+<h4>Incidents</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="Priority" class="control-label"></label><br />
+                P1 <input type="radio" asp-for="Priority" value="P1" required>
+                P2 <input type="radio" asp-for="Priority" value="P2" required>
+                P3 <input type="radio" asp-for="Priority" value="P3" required>
+                <span asp-validation-for="Priority" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Sdpticket" class="control-label">SDP Ticket</label>
+                <input asp-for="Sdpticket" class="form-control" />
+                <span asp-validation-for="Sdpticket" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Status" class="control-label"></label><br />
+                <select asp-for="Status">
+                    <option value="Open" selected>Open</option>
+                    <option value="Monitoring">Monitoring</option>
+                    <option value="Resolved">Resolved</option>
+                </select>
+                <span asp-validation-for="Status" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CurrentDateTime" class="control-label">Current Date/Time</label>
+                <input asp-for="CurrentDateTime" class="form-control" required />
+                <span asp-validation-for="CurrentDateTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Subject" class="control-label"></label>
+                <input asp-for="Subject" class="form-control" required />
+                <span asp-validation-for="Subject" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Summary" class="control-label"></label>
+                <textarea asp-for="Summary" class="form-control" required></textarea>
+                <span asp-validation-for="Summary" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <textarea asp-for="Description" class="form-control" rows="3" required></textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="InitialDateTime" class="control-label">Initial Date/Time</label>
+                <input asp-for="InitialDateTime" class="form-control" required />
+                <span asp-validation-for="InitialDateTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Impact" class="control-label"></label>
+                <textarea asp-for="Impact" class="form-control" rows="3" required></textarea>
+                <span asp-validation-for="Impact" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="VendorTicket" class="control-label">Vendor Ticket</label>
+                <input asp-for="VendorTicket" class="form-control" />
+                <span asp-validation-for="VendorTicket" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label name="Teams" class="control-label">Teams Engaged</label><br />
+                <p>To select multiple (Ctrl + Click)</p>
+                @Html.ListBox("Teams", (MultiSelectList)ViewBag.TeamList, new { required = "required" })
+                <p><a asp-controller="ITteams" asp-action="Index">Edit this list</a></p>
+            </div>
+            <div class="form-group">
+                <label name="Contacts" class="control-label">Send To</label><br />
+                <p>To select multiple (Ctrl + Click)</p>
+                @Html.ListBox("Contacts", (MultiSelectList)ViewBag.ContactList, new { required = "required" })
+                <p><a asp-controller="ITcontacts" asp-action="Index">Edit this list</a></p>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create & Send" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
